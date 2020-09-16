@@ -1,6 +1,6 @@
 import tutorial01 as A1
 
-actual_answers = [9, 12, 80, 5, 27]
+actual_answers = [9, 12, 80, 5, 27,[2, 6, 18, 54, 162]]
 student_answers = []
 
 test_case_1 = A1.add(4, 5)
@@ -14,8 +14,13 @@ student_answers.append(test_case_3)
 
 test_case_4 = A1.divide(10, 2)
 student_answers.append(test_case_4)
+
 test_case_5 = A1.power(3 , 3)
 student_answers.append(test_case_5)
+
+gp = A1.printGP(2, 3, 5) 
+gp = list(gp) 
+student_answers.append(gp)
 
 print(actual_answers)
 print(student_answers)
