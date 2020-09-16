@@ -24,7 +24,11 @@ def divide(num1, num2):
 #You cant use the inbuilt python function x ** y . Write your own function
 def power(num1, num2): #num1 ^ num2
 	#DivisionLogic
-	# Base Cases 
+	# Base Cases
+	if(num1==0 and num2 < 0 ):
+		return 0
+	if(num2<0):
+		return 1/power(num1,-num2)
 	if (num1 == 0): 
 		return 0
 	if (num2 == 0): 
