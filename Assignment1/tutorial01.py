@@ -17,6 +17,8 @@ def multiply(num1, num2):
 # Function to divide two numbers 
 def divide(num1, num2): 
 	#DivisionLogic
+	if(num2==0):
+		return 0
 	division=num1/num2 
 	return division
 
@@ -28,7 +30,7 @@ def power(num1, num2): #num1 ^ num2
 	if(num1==0 and num2 < 0 ):
 		return 0
 	if(num2<0):
-		return 1/power(num1,-num2)
+		return round(1/power(num1,-num2),3)
 	if (num1 == 0): 
 		return 0
 	if (num2 == 0): 
@@ -46,7 +48,9 @@ def power(num1, num2): #num1 ^ num2
 	
 # Python 3 program to print GP.  geometric Progression
 #You cant use the inbuilt python function. Write your own function
-def printGP(a, r, n): 
+def printGP(a, r, n):
+	if(not isinstance(n,int)):
+		return [0]
 	gp=[]
 	for i in range(0,n):
 		gp.append(a*power(r,i)) 
@@ -54,7 +58,9 @@ def printGP(a, r, n):
 
 # Python 3 program to print AP.  arithmetic Progression
 #You cant use the inbuilt python function. Write your own function
-def printAP(a, d, n): 
+def printAP(a, d, n):
+	if(not isinstance(n,int)):
+		return [0] 
 	ap=[]
 	for i in range(0,n):
 		ap.append(a+(i*d))
@@ -64,4 +70,12 @@ def printAP(a, d, n):
 #You cant use the inbuilt python function. Write your own function
 def printHP(a, d, n): 
 	hp=[]
+	if(not isinstance(n,int)):
+		return hp
+	ap=printAP(a,d,n)
+	for i in range(0,n):
+		if(ap[i]==0):
+			hp.append(round(0,3))
+		else:
+			hp.append(round(1/ap[i],3))
 	return hp
