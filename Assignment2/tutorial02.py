@@ -10,7 +10,14 @@ def mean(first_list):
 # Function to compute median. You cant use Python functions
 def median(first_list):
     # median Logic
-    return median_value
+    lis=sorting(first_list.copy())
+    median_value=0
+    n=len(lis)
+    if(len(lis)%2==0):
+        median_value=(lis[int((n/2)-1)]+lis[int(n/2)])/2
+    else:
+        median_value=lis[(int((n+1)/2)-1)]
+        return round(median_value,6)
 
 
 # Function to compute Standard deviation. You cant use Python functions
@@ -60,9 +67,40 @@ def skewness(first_list):
     # Skewness Logic
     return skewness_value
     
+def partition(arr,low,high): 
+    i = ( low-1 )         # index of smaller element 
+    pivot = arr[high]     # pivot 
+  
+    for j in range(low , high): 
+  
+        # If current element is smaller than the pivot 
+        if   arr[j] < pivot: 
+          
+            # increment index of smaller element 
+            i = i+1 
+            arr[i],arr[j] = arr[j],arr[i] 
+  
+    arr[i+1],arr[high] = arr[high],arr[i+1] 
+    return ( i+1 ) 
+
+#quickSort Algorithm
+def quickSort(arr,low,high): 
+    if low < high: 
+  
+        # pi is partitioning index, arr[p] is now 
+        # at right place 
+        pi = partition(arr,low,high) 
+  
+        # Separately sort elements before 
+        # partition and after partition 
+        quickSort(arr, low, pi-1) 
+        quickSort(arr, pi+1, high) 
+
+
 def sorting(first_list):
     # Sorting Logic
-    return sorted_list
+    quickSort(first_list,0,len(first_list)-1)
+    return first_list
 
 
 # Function to compute Kurtosis. You cant use Python functions
