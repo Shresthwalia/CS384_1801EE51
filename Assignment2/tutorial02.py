@@ -76,19 +76,36 @@ def mae(first_list, second_list):
 # Function to compute NSE. You cant use Python functions
 def nse(first_list, second_list):
     # nse Logic
-    return nse_value
+    avg=mean(first_list)
+    numerator=mse(first_list,second_list)
+    denominator=variance(first_list)
+    nse_value=1-(numerator/denominator)
+    return round(nse_value,6)
 
 
 # Function to compute Pearson correlation coefficient. You cant use Python functions
 def pcc(first_list, second_list):
     # nse Logic
-    return pcc_value
+    lis=[]
+    avgf=mean(first_list)
+    avgs=mean(second_list)
+    for i,j in zip(first_list,second_list):
+        lis.append((i-avgf)*(j-avgs))
+    avg=mean(lis)
+    pcc_value=(avg/(standard_deviation(first_list)*standard_deviation(second_list)))
+    return round(pcc_value,6)
 
 
 # Function to compute Skewness. You cant use Python functions
 def skewness(first_list):
     # Skewness Logic
-    return skewness_value
+    var=standard_deviation(first_list)
+    avg=mean(first_list)
+    lis=[]
+    for i in first_list:
+        lis.append(((i-avg)/var)*((i-avg)/var)*((i-avg)/var))
+    skewness_value=mean(lis)
+    return round(skewness_value,6)
     
 def partition(arr,low,high): 
     i = ( low-1 )         # index of smaller element 
