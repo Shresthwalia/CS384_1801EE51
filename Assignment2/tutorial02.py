@@ -23,13 +23,19 @@ def median(first_list):
 # Function to compute Standard deviation. You cant use Python functions
 def standard_deviation(first_list):
     # Standard deviation Logic
-    return standard_deviation_value
+    standard_deviation_value=math.sqrt(variance(first_list))
+    return round(standard_deviation_value,6)
 
 
 # Function to compute variance. You cant use Python functions
 def variance(first_list):
     # variance Logic
-    return variance_value
+    avg=mean(first_list)
+    lis=[]
+    for i in first_list:
+        lis.append((i-avg)*(i-avg))
+    variance_value=mean(lis)
+    return round(variance_value,6)
 
 
 # Function to compute RMSE. You cant use Python functions
@@ -106,7 +112,13 @@ def sorting(first_list):
 # Function to compute Kurtosis. You cant use Python functions
 def kurtosis(first_list):
     # Kurtosis Logic
-    return kurtosis_value
+    var=standard_deviation(first_list)
+    avg=mean(first_list)
+    lis=[]
+    for i in first_list:
+        lis.append(((i-avg)/var)*((i-avg)/var)*((i-avg)/var)*((i-avg)/var))
+    kurtosis_value=mean(lis)
+    return round(kurtosis_value,6)
 
 
 # Function to compute sum. You cant use Python functions
