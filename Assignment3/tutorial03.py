@@ -1,6 +1,7 @@
 import csv
 import os
 import shutil
+import re
 os.system('cls')
 
 def course():
@@ -41,8 +42,46 @@ country()
 
 def email_domain_extract():
     # Read csv and process
+    if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
+        os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')
+    if(os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/email_domain')):
+        shutil.rmtree('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/email_domain')
+    os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/email_domain')
+    path='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/email_domain'
+    mainlist = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/studentinfo_cs384.csv', 'r')
+    pattern = re.compile(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,18}$')
+    with mainlist:
+        reader=csv.reader(mainlist)
+        for row in reader:
+            if(row[0]=='id'):
+               temp=row 
+            if(not row[0]=='id'):
+                if(re.match(pattern,row[3])):
+                    res = row[3][row[3].index('@')+1:] 
+                    ret=res[:res.index('.')]
+                    pi=os.path.join(path,ret+'.csv')
+                    if(not os.path.isfile(pi)):
+                        mainl = open(pi, 'w',newline='')
+                        with mainl:
+                            mw=csv.writer(mainl)
+                            mw.writerow(temp)
+                    mainl = open(pi, 'a',newline='')
+                    with mainl:
+                        mw=csv.writer(mainl)
+                        mw.writerow(row)
+                else:
+                    pi=os.path.join(path,'misc.csv')
+                    if(not os.path.isfile(pi)):
+                        mainl = open(pi, 'w',newline='')
+                        with mainl:
+                            mw=csv.writer(mainl)
+                            mw.writerow(temp)
+                    mainl = open(pi, 'a',newline='')
+                    with mainl:
+                        mw=csv.writer(mainl)
+                        mw.writerow(row)
     pass
-
+email_domain_extract()
 
 def gender():
     # Read csv and process
