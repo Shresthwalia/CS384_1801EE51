@@ -10,8 +10,33 @@ def course():
 
 def country():
     # Read csv and process
-    pass
+    if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
+        os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')
+    if(os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/country')):
+        shutil.rmtree('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/country')
+    os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/country')
+    path='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/country'
+    mainlist = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/studentinfo_cs384.csv', 'r')
+    with mainlist:
+        reader=csv.reader(mainlist)
+        for row in reader:
+            if(row[0]=='id'):
+               temp=row 
+            countryname=row[2]+'.csv'
+            pa=os.path.join(path,countryname)
+            if(not os.path.isfile(pa)):
+                mainl = open(pa, 'w',newline='')
+                with mainl:
+                    mw=csv.writer(mainl)
+                    mw.writerow(temp)
+            if(not row[0]=='id'):
+                mainl = open(pa, 'a',newline='')
+                with mainl:
+                    mw=csv.writer(mainl)
+                    mw.writerow(row)
 
+    pass
+country()
 
 def email_domain_extract():
     # Read csv and process
@@ -23,7 +48,7 @@ def gender():
     if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
         os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')
     if(os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender')):
-        shutil.rmtree('C:/Users\Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender')
+        shutil.rmtree('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender')
     os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender')
     mainlist = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/studentinfo_cs384.csv', 'r')
     with mainlist:
