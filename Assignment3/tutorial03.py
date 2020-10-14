@@ -1,5 +1,6 @@
 import csv
 import os
+import shutil
 os.system('cls')
 
 def course():
@@ -19,9 +20,12 @@ def email_domain_extract():
 
 def gender():
     # Read csv and process
+    if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
+        os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')
+    if(os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender')):
+        shutil.rmtree('C:/Users\Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender')
+    os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender')
     mainlist = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/studentinfo_cs384.csv', 'r')
-    male = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender/male.csv','w').close()
-    female =open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender/female.csv','w').close()
     with mainlist:
         reader=csv.reader(mainlist)
         for row in reader:
