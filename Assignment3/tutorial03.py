@@ -24,11 +24,12 @@ def country():
                temp=row 
             countryname=row[2]+'.csv'
             pa=os.path.join(path,countryname)
-            if(not os.path.isfile(pa)):
-                mainl = open(pa, 'w',newline='')
-                with mainl:
-                    mw=csv.writer(mainl)
-                    mw.writerow(temp)
+            if(not row[0]=='id'):
+                if(not os.path.isfile(pa)):
+                    mainl = open(pa, 'w',newline='')
+                    with mainl:
+                        mw=csv.writer(mainl)
+                        mw.writerow(temp)
             if(not row[0]=='id'):
                 mainl = open(pa, 'a',newline='')
                 with mainl:
