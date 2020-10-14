@@ -85,8 +85,33 @@ def dob():
 
 def state():
     # Read csv and process
+    if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
+        os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')
+    if(os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/state')):
+        shutil.rmtree('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/state')
+    os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/state')
+    path='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/state'
+    mainlist = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/studentinfo_cs384.csv', 'r')
+    with mainlist:
+        reader=csv.reader(mainlist)
+        for row in reader:
+            if(row[0]=='id'):
+               temp=row 
+            statename=row[7]+'.csv'
+            pa=os.path.join(path,statename)
+            if(not row[0]=='id'):
+                if(not os.path.isfile(pa)):
+                    mainl = open(pa, 'w',newline='')
+                    with mainl:
+                        mw=csv.writer(mainl)
+                        mw.writerow(temp)
+            if(not row[0]=='id'):
+                mainl = open(pa, 'a',newline='')
+                with mainl:
+                    mw=csv.writer(mainl)
+                    mw.writerow(row)
     pass
-
+state()
 
 def blood_group():
     # Read csv and process
