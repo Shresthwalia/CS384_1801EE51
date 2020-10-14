@@ -115,9 +115,34 @@ state()
 
 def blood_group():
     # Read csv and process
+    if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
+        os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')
+    if(os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/blood_group')):
+        shutil.rmtree('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/blood_group')
+    os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/blood_group')
+    path='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/blood_group'
+    mainlist = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/studentinfo_cs384.csv', 'r')
+    with mainlist:
+        reader=csv.reader(mainlist)
+        for row in reader:
+            if(row[0]=='id'):
+               temp=row 
+            bloodname=row[6]+'.csv'
+            pa=os.path.join(path,bloodname)
+            if(not row[0]=='id'):
+                if(not os.path.isfile(pa)):
+                    mainl = open(pa, 'w',newline='')
+                    with mainl:
+                        mw=csv.writer(mainl)
+                        mw.writerow(temp)
+            if(not row[0]=='id'):
+                mainl = open(pa, 'a',newline='')
+                with mainl:
+                    mw=csv.writer(mainl)
+                    mw.writerow(row)
     pass
 
-
+blood_group()
 # Create the new file here and also sort it in this function only.
 def new_file_sort():
     # Read csv and process
