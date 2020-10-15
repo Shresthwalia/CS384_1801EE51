@@ -3,6 +3,7 @@ import os
 import shutil
 import re
 import datetime
+import operator
 os.system('cls')
 #SHRESTHA WALIA ROLL-1801EE51
 def del_create_analytics_folder():
@@ -320,6 +321,7 @@ def new_file_sort():
     if(not os.path.isdir(r'./analytics')):
         os.makedirs('./analytics')
     temp=['id','first name','last name','country','email','gender','dob','blood group','state']
+    header=temp
     new_fil=open('./analytics/studentinfo_cs384_names_split.csv','a',newline='')
     with new_fil:
         mw=csv.writer(new_fil)
@@ -340,5 +342,22 @@ def new_file_sort():
                 newf=open('./analytics/studentinfo_cs384_names_split.csv', 'a',newline='')
                 with newf:
                     mw=csv.writer(newf)
-                    mw.writerow(temp) 
+                    mw.writerow(temp)
+    new_fil=open('./analytics/studentinfo_cs384_names_split.csv','r')
+    lis=[]
+    with new_fil:
+        reader=csv.reader(new_fil)
+        for row in reader:
+            if(row[0]!='id'):
+                lis.append(row)
+    f=open('./analytics/studentinfo_cs384_names_split_sorted_first_name.csv', 'a',newline='')
+    with f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+    slis=sorted(lis,key=lambda l:l[1])
+    f=open('./analytics/studentinfo_cs384_names_split_sorted_first_name.csv', 'a',newline='')
+    with f:
+        writer = csv.writer(f)
+        for row in slis:
+            writer.writerow(row)
     pass
