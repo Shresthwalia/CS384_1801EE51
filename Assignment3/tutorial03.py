@@ -4,7 +4,7 @@ import shutil
 import re
 import datetime
 os.system('cls')
-
+#SHRESTHA WALIA ROLL-1801EE51
 def del_create_analytics_folder():
     # del the analytics folder including subfolder
     # mkdir the analytics folder (only mkdir)
@@ -15,8 +15,52 @@ def del_create_analytics_folder():
 
 def course():
     # Read csv and process
+    cd = '.'
+    file=open('studentinfo_cs384.csv','r')
+    with file:
+        student_data = csv.DictReader(file)
+        miscc=[]
+        header=['id','full_name','country','email','gender','dob','blood_group','state']
+        cocode={'01' : "btech",'11' : "mtech",'12' : "msc",'21' : "phd"}
+        roll_number_pattern = re.compile(r'^[0-9]{2}[0-2]{2}[a-zA-Z]{2}[0-9]{2}$')    
+        cd+=r'\analytics'
+        if(not os.path.isdir(cd)):
+            os.mkdir(cd)
+        cd+=r'\course'
+        if(not os.path.isdir(cd)):
+            os.mkdir(cd)
+        for row in student_data:
+            roll_no = row['id']
+            if(not re.match(roll_number_pattern , roll_no)):
+                miscc.append(row)
+            else:
+                yeah = roll_no[0:2]
+                course = cocode[roll_no[2:4]]
+                branch = (roll_no[4:6]).lower()
+                cd1=cd
+                cd1+="\\"+branch
+                if not os.path.isdir(cd1):
+                    os.mkdir(cd1)
+                cd1+="\\"+course
+                if not os.path.isdir(cd1):
+                    os.mkdir(cd1)
+                info_file = cd1 + "\\" + yeah + '_' + branch + '_' + course + ".csv"
+                if(not os.path.isfile(info_file)):
+                    file=open(info_file,'w',newline='')
+                    with file:
+                        mw = csv.DictWriter(file,fieldnames=header)
+                        mw.writeheader()
+                file=open(info_file,'a+',newline='')
+                with file:
+                    mw = csv.DictWriter(file,fieldnames=header)
+                    mw.writerow(row)
+        cd+=r'\misc.csv'
+        file=open(cd,'w',newline='')
+        with file:
+            data = csv.DictWriter(file,fieldnames=header)
+            data.writeheader()
+            data.writerows(miscc)
     pass
-
 
 def country():
     # Read csv and process
