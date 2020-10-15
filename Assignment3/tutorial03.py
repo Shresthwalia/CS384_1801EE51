@@ -2,6 +2,7 @@ import csv
 import os
 import shutil
 import re
+import datetime
 os.system('cls')
 
 def course():
@@ -117,11 +118,96 @@ def gender():
     pass
 
 gender()
+def date_validation(day, month, year): 
+      
+    isValidDate = True
+    try : 
+        datetime.datetime(int(year),  
+                          int(month), int(day)) 
+          
+    except ValueError : 
+        isValidDate = False
+    if((int(year))<1995 or (int(year))>2020):
+        isValidDate = False
+    return isValidDate
 def dob():
     # Read csv and process
+    if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
+        os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')
+    if(os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob')):
+        shutil.rmtree('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob')
+    os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob')
+    path='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob'
+    category1='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob/bday_1995_1999.csv'
+    category2='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob/bday_2000_2004.csv'
+    category3='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob/bday_2005_2009.csv'
+    category4='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob/bday_2010_2014.csv'
+    category5='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob/bday_2015_2020.csv'
+    category6='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob/misc.csv'
+    mainlist = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/studentinfo_cs384.csv', 'r')
+    with mainlist:
+        reader=csv.reader(mainlist)
+        for row in reader:
+            if(row[0]=='id'):
+                m1=open(category1,'w',newline='')
+                with m1:
+                        mw=csv.writer(m1)
+                        mw.writerow(row)
+                m2=open(category2,'w',newline='')
+                with m2:
+                        mw=csv.writer(m2)
+                        mw.writerow(row)
+                m3=open(category3,'w',newline='')
+                with m3:
+                        mw=csv.writer(m3)
+                        mw.writerow(row)
+                m4=open(category4,'w',newline='')
+                with m4:
+                        mw=csv.writer(m4)
+                        mw.writerow(row)
+                m5=open(category5,'w',newline='')
+                with m5:
+                        mw=csv.writer(m5)
+                        mw.writerow(row)
+                m6=open(category6,'w',newline='')
+                with m6:
+                        mw=csv.writer(m6)
+                        mw.writerow(row)
+            else:
+                res = row[5].split('-')
+                if(not date_validation(res[0],res[1],res[2])):
+                    m6=open(category6,'a',newline='')
+                    with m6:
+                        mw=csv.writer(m6)
+                        mw.writerow(row)
+                elif((int(res[2]))>=1995 and (int(res[2]))<=1999):
+                    m1=open(category1,'a',newline='')
+                    with m1:
+                        mw=csv.writer(m1)
+                        mw.writerow(row)
+                elif((int(res[2]))>=2000 and (int(res[2]))<=2004):
+                    m2=open(category2,'a',newline='')
+                    with m2:
+                        mw=csv.writer(m2)
+                        mw.writerow(row)
+                elif((int(res[2]))>=2005 and (int(res[2]))<=2009):
+                    m3=open(category3,'a',newline='')
+                    with m3:
+                        mw=csv.writer(m3)
+                        mw.writerow(row)
+                elif((int(res[2]))>=2010 and (int(res[2]))<=2014):
+                    m4=open(category4,'a',newline='')
+                    with m4:
+                        mw=csv.writer(m4)
+                        mw.writerow(row)
+                elif((int(res[2]))>=2015 and (int(res[2]))<=2020):
+                    m5=open(category5,'a',newline='')
+                    with m5:
+                        mw=csv.writer(m5)
+                        mw.writerow(row)
     pass
 
-
+dob()
 def state():
     # Read csv and process
     if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
