@@ -5,6 +5,14 @@ import re
 import datetime
 os.system('cls')
 
+def del_create_analytics_folder():
+    # del the analytics folder including subfolder
+    # mkdir the analytics folder (only mkdir)
+    if(os.path.isdir(r'./analytics')):
+        shutil.rmtree('./analytics')
+    os.makedirs('./analytics')
+    pass
+
 def course():
     # Read csv and process
     pass
@@ -12,13 +20,13 @@ def course():
 
 def country():
     # Read csv and process
-    if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
-        os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')
-    if(os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/country')):
-        shutil.rmtree('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/country')
-    os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/country')
-    path='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/country'
-    mainlist = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/studentinfo_cs384.csv', 'r')
+    if(not os.path.isdir(r'./analytics')):
+        os.makedirs('./analytics')
+    if(os.path.isdir(r'./analytics/country')):
+        shutil.rmtree('./analytics/country')
+    os.makedirs('./analytics/country')
+    path='./analytics/country'
+    mainlist = open('./studentinfo_cs384.csv', 'r')
     with mainlist:
         reader=csv.reader(mainlist)
         for row in reader:
@@ -39,17 +47,16 @@ def country():
                     mw.writerow(row)
 
     pass
-country()
 
 def email_domain_extract():
     # Read csv and process
-    if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
-        os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')
-    if(os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/email_domain')):
-        shutil.rmtree('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/email_domain')
-    os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/email_domain')
-    path='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/email_domain'
-    mainlist = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/studentinfo_cs384.csv', 'r')
+    if(not os.path.isdir(r'./analytics')):
+        os.makedirs('./analytics')
+    if(os.path.isdir(r'./analytics/email_domain')):
+        shutil.rmtree('./analytics/email_domain')
+    os.makedirs('./analytics/email_domain')
+    path='./analytics/email_domain'
+    mainlist = open('./studentinfo_cs384.csv', 'r')
     pattern = re.compile(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,18}$')
     with mainlist:
         reader=csv.reader(mainlist)
@@ -82,42 +89,40 @@ def email_domain_extract():
                         mw=csv.writer(mainl)
                         mw.writerow(row)
     pass
-email_domain_extract()
 
 def gender():
     # Read csv and process
-    if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
-        os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')
-    if(os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender')):
-        shutil.rmtree('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender')
-    os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender')
-    mainlist = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/studentinfo_cs384.csv', 'r')
+    if(not os.path.isdir(r'./analytics')):
+        os.makedirs('./analytics')
+    if(os.path.isdir(r'./analytics/gender')):
+        shutil.rmtree('./analytics/gender')
+    os.makedirs('./analytics/gender')
+    mainlist = open('./studentinfo_cs384.csv', 'r')
     with mainlist:
         reader=csv.reader(mainlist)
         for row in reader:
             if(row[4]=='Male'):
-                male = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender/male.csv','a',newline='')
+                male = open('./analytics/gender/male.csv','a',newline='')
                 with male:
                     mw=csv.writer(male)
                     mw.writerow(row)
             elif(row[4]=='Female'):
-                female =open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender/female.csv','a',newline='')
+                female =open('./analytics/gender/female.csv','a',newline='')
                 with female:
                     fw=csv.writer(female)
                     fw.writerow(row)
             else:
-                male = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender/male.csv','a',newline='')
+                male = open('./analytics/gender/male.csv','a',newline='')
                 with male:
                     mw=csv.writer(male)
                     mw.writerow(row) 
-                female =open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/gender/female.csv','a',newline='')
+                female =open('./analytics/gender/female.csv','a',newline='')
                 with female:
                     fw=csv.writer(female)
                     fw.writerow(row)
                           
     pass
 
-gender()
 def date_validation(day, month, year): 
       
     isValidDate = True
@@ -132,19 +137,19 @@ def date_validation(day, month, year):
     return isValidDate
 def dob():
     # Read csv and process
-    if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
-        os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')
-    if(os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob')):
-        shutil.rmtree('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob')
-    os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob')
-    path='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob'
-    category1='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob/bday_1995_1999.csv'
-    category2='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob/bday_2000_2004.csv'
-    category3='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob/bday_2005_2009.csv'
-    category4='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob/bday_2010_2014.csv'
-    category5='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob/bday_2015_2020.csv'
-    category6='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/dob/misc.csv'
-    mainlist = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/studentinfo_cs384.csv', 'r')
+    if(not os.path.isdir(r'./analytics')):
+        os.makedirs('./analytics')
+    if(os.path.isdir(r'./analytics/dob')):
+        shutil.rmtree('./analytics/dob')
+    os.makedirs('./analytics/dob')
+    path='./analytics/dob'
+    category1='./analytics/dob/bday_1995_1999.csv'
+    category2='./analytics/dob/bday_2000_2004.csv'
+    category3='./analytics/dob/bday_2005_2009.csv'
+    category4='./analytics/dob/bday_2010_2014.csv'
+    category5='./analytics/dob/bday_2015_2020.csv'
+    category6='./analytics/dob/misc.csv'
+    mainlist = open('./studentinfo_cs384.csv', 'r')
     with mainlist:
         reader=csv.reader(mainlist)
         for row in reader:
@@ -207,16 +212,15 @@ def dob():
                         mw.writerow(row)
     pass
 
-dob()
 def state():
     # Read csv and process
-    if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
-        os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')
-    if(os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/state')):
-        shutil.rmtree('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/state')
-    os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/state')
-    path='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/state'
-    mainlist = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/studentinfo_cs384.csv', 'r')
+    if(not os.path.isdir(r'./analytics')):
+        os.makedirs('./analytics')
+    if(os.path.isdir(r'./analytics/state')):
+        shutil.rmtree('./analytics/state')
+    os.makedirs('./analytics/state')
+    path='./analytics/state'
+    mainlist = open('./studentinfo_cs384.csv', 'r')
     with mainlist:
         reader=csv.reader(mainlist)
         for row in reader:
@@ -236,17 +240,16 @@ def state():
                     mw=csv.writer(mainl)
                     mw.writerow(row)
     pass
-state()
 
 def blood_group():
     # Read csv and process
-    if(not os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')):
-        os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics')
-    if(os.path.isdir(r'C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/blood_group')):
-        shutil.rmtree('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/blood_group')
-    os.makedirs('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/blood_group')
-    path='C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/analytics/blood_group'
-    mainlist = open('C:/Users/Shrestha Walia/CS384_1801EE51/Assignment3/studentinfo_cs384.csv', 'r')
+    if(not os.path.isdir(r'./analytics')):
+        os.makedirs('./analytics')
+    if(os.path.isdir(r'./analytics/blood_group')):
+        shutil.rmtree('./analytics/blood_group')
+    os.makedirs('./analytics/blood_group')
+    path='./analytics/blood_group'
+    mainlist = open('./studentinfo_cs384.csv', 'r')
     with mainlist:
         reader=csv.reader(mainlist)
         for row in reader:
@@ -267,8 +270,31 @@ def blood_group():
                     mw.writerow(row)
     pass
 
-blood_group()
 # Create the new file here and also sort it in this function only.
 def new_file_sort():
     # Read csv and process
+    if(not os.path.isdir(r'./analytics')):
+        os.makedirs('./analytics')
+    temp=['id','first name','last name','country','email','gender','dob','blood group','state']
+    new_fil=open('./analytics/studentinfo_cs384_names_split.csv','a',newline='')
+    with new_fil:
+        mw=csv.writer(new_fil)
+        mw.writerow(temp)
+    mainlist = open('./studentinfo_cs384.csv', 'r')
+    with mainlist:
+        reader=csv.reader(mainlist)
+        for row in reader:
+            if(row[0] != 'id'):
+                name_split = row[1].split(' ')
+                first_name = name_split[0]
+                last_name = name_split[1:]
+                last=''
+                for i in last_name:
+                    last=last+i+' '
+                temp = [row[0], first_name, last, row[2],
+                        row[3], row[4], row[5], row[6], row[7]]
+                newf=open('./analytics/studentinfo_cs384_names_split.csv', 'a',newline='')
+                with newf:
+                    mw=csv.writer(newf)
+                    mw.writerow(temp) 
     pass
