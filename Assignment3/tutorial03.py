@@ -71,6 +71,7 @@ def country():
         shutil.rmtree('./analytics/country')
     os.makedirs('./analytics/country')
     path='./analytics/country'
+    pattern=re.compile(r'^$')
     mainlist = open('./studentinfo_cs384.csv', 'r')
     with mainlist:
         reader=csv.reader(mainlist)
@@ -86,10 +87,21 @@ def country():
                         mw=csv.writer(mainl)
                         mw.writerow(temp)
             if(not row[0]=='id'):
-                mainl = open(pa, 'a',newline='')
-                with mainl:
-                    mw=csv.writer(mainl)
-                    mw.writerow(row)
+                if(not re.match(pattern,row[2])):
+                    mainl = open(pa, 'a',newline='')
+                    with mainl:
+                        mw=csv.writer(mainl)
+                        mw.writerow(row)
+                else:
+                    if(not os.path.isfile('./analytics/country/misc.csv')):
+                        mainl = open('./analytics/country/misc.csv', 'w',newline='')
+                        with mainl:
+                            mw=csv.writer(mainl)
+                            mw.writerow(temp)
+                    main1=open('./analytics/country/misc.csv','a',newline='')
+                    with main1:
+                        mw=csv.writer(main1)
+                        mw.writerow(row)
 
     pass
 
@@ -156,7 +168,7 @@ def gender():
                 with female:
                     fw=csv.writer(female)
                     fw.writerow(row)
-            else:
+            elif(row[0]=='id'):
                 male = open('./analytics/gender/male.csv','a',newline='')
                 with male:
                     mw=csv.writer(male)
@@ -165,7 +177,15 @@ def gender():
                 with female:
                     fw=csv.writer(female)
                     fw.writerow(row)
-                          
+                misc= open('./analytics/gender/misc.csv','a',newline='')
+                with misc:
+                    mw=csv.writer(misc)
+                    mw.writerow(row)
+            else:
+                misc= open('./analytics/gender/misc.csv','a',newline='')
+                with misc:
+                    mw=csv.writer(misc)
+                    mw.writerow(row)  
     pass
 
 def date_validation(day, month, year): 
@@ -265,6 +285,7 @@ def state():
         shutil.rmtree('./analytics/state')
     os.makedirs('./analytics/state')
     path='./analytics/state'
+    pattern=re.compile(r'^$')
     mainlist = open('./studentinfo_cs384.csv', 'r')
     with mainlist:
         reader=csv.reader(mainlist)
@@ -280,10 +301,21 @@ def state():
                         mw=csv.writer(mainl)
                         mw.writerow(temp)
             if(not row[0]=='id'):
-                mainl = open(pa, 'a',newline='')
-                with mainl:
-                    mw=csv.writer(mainl)
-                    mw.writerow(row)
+                if(not re.match(pattern,row[7])):
+                    mainl = open(pa, 'a',newline='')
+                    with mainl:
+                        mw=csv.writer(mainl)
+                        mw.writerow(row)
+                else:
+                    if(not os.path.isfile('./analytics/state/misc.csv')):
+                        mainl = open('./analytics/state/misc.csv', 'w',newline='')
+                        with mainl:
+                            mw=csv.writer(mainl)
+                            mw.writerow(temp)
+                    main1=open('./analytics/state/misc.csv','a',newline='')
+                    with main1:
+                        mw=csv.writer(main1)
+                        mw.writerow(row)
     pass
 
 def blood_group():
@@ -294,6 +326,7 @@ def blood_group():
         shutil.rmtree('./analytics/blood_group')
     os.makedirs('./analytics/blood_group')
     path='./analytics/blood_group'
+    pattern=re.compile(r'^(A|B|AB|O)[+-]$',re.IGNORECASE)
     mainlist = open('./studentinfo_cs384.csv', 'r')
     with mainlist:
         reader=csv.reader(mainlist)
@@ -301,7 +334,7 @@ def blood_group():
             if(row[0]=='id'):
                temp=row 
             bloodname=row[6]+'.csv'
-            pa=os.path.join(path,bloodname)
+            pa=os.path.join(path,bloodname.lower())
             if(not row[0]=='id'):
                 if(not os.path.isfile(pa)):
                     mainl = open(pa, 'w',newline='')
@@ -309,10 +342,21 @@ def blood_group():
                         mw=csv.writer(mainl)
                         mw.writerow(temp)
             if(not row[0]=='id'):
-                mainl = open(pa, 'a',newline='')
-                with mainl:
-                    mw=csv.writer(mainl)
-                    mw.writerow(row)
+                if(re.match(pattern,row[6])):
+                    mainl = open(pa, 'a',newline='')
+                    with mainl:
+                        mw=csv.writer(mainl)
+                        mw.writerow(row)
+                else:
+                    if(not os.path.isfile('./analytics/blood_group/misc.csv')):
+                        mainl = open('./analytics/blood_group/misc.csv', 'w',newline='')
+                        with mainl:
+                            mw=csv.writer(mainl)
+                            mw.writerow(temp)
+                    main1=open('./analytics/blood_group/misc.csv','a',newline='')
+                    with main1:
+                        mw=csv.writer(main1)
+                        mw.writerow(row)
     pass
 
 # Create the new file here and also sort it in this function only.
