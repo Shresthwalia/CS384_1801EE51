@@ -43,6 +43,7 @@ with file:
             with mainl:
                 mw = csv.writer(mainl)
                 mw.writerow(lis1)
+#overall starts here
 lis = []
 for roll in rolllist:
     file = open('./grades/'+roll+'_individual.csv', 'r')
