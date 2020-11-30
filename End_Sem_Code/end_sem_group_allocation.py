@@ -91,6 +91,7 @@ def group_allocation(filename, groups_no):
         with file:
             alltheentries = csv.writer(file)
             alltheentries.writerow(["Roll", "Name", "Email"])
+    #here we are using pandas library to make database
     for i in range(2, branch_num+2):
         databasestructure = pd.read_csv(r'./branches/'+groupdatatable[0][i]+'.csv')
         countindex = 0
