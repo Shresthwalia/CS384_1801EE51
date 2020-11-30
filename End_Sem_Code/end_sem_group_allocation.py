@@ -3,17 +3,17 @@ import csv
 import pandas as pd
 import shutil
 import os
-
-
-def group_allocation(filename, groups_no):
-    # Entire Logic
-    # You can add more functions, but in the test case, we will only call the group_allocation() method,
+def deletepreviouswork():
     if os.path.exists(r'./groups'):
         shutil.rmtree(r'./groups')
     os.mkdir(r'./groups')
     if os.path.exists(r'./branches'):
         shutil.rmtree(r'./branches')
     os.mkdir(r'./branches')
+    return 
+def group_allocation(filename, groups_no):
+    # Entire Logic
+    # You can add more functions, but in the test case, we will only call the group_allocation() method,
     file = open(r'./'+filename, 'r')
     with file:
         alltheentries = csv.reader(file)
@@ -104,7 +104,7 @@ def group_allocation(filename, groups_no):
                 alltheentries = csv.writer(file)
                 alltheentries.writerows(tyh)
     return
-
+deletepreviouswork()
 filename = "Btech_2020_master_data.csv"
 groups_no = int(input("Enter No. of Groups : ", ))
 group_allocation(filename, groups_no)
