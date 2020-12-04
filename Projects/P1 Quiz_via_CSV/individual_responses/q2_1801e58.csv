@@ -1,0 +1,11 @@
+ques_no,question,option1,option2,option3,option4,correct_option,marks_correct_ans,marks_wrong_ans,compulsory,marked_choice,Total,Legend
+1,What is the capital of India,Mumbai,Chennai,New Delhi,Kolkata,3,5,-1,n,Not answered,0.0,Correct Choices
+2,4+4 =,4,7,9,8,4,4,-1,y,Not answered,0.0,Wrong Choices
+3,Capital of France,Paris,Patna,Amhara,London,1,8,-2,n,Not answered,10.0,Unattempted
+4,Major part of the air is constituted by,nitrogen,oxygen,carbon dioxide,inert gases,1,5,-1,y,Not answered,0.0,Marks Obtained
+5,"Which of the following gas helps in burning? ,",,Nitrogen,Oxygen,Carbon dioxide,2,5,-1,n,Not answered,52.0,Total Quiz Marks
+6,Which of the following gas we use in breathing?,Carbon dioxide,Nitrogen,Oxygen,None of these,3,5,-1,y,Not answered,,
+7,Wind is,air around us,rising hot air,air in motion,none of these,3,5,-1,n,Not answered,,
+8,Air is present in,atmosphere,soil,"water of ponds, lakes and seas",everywhere,4,5,-1,y,Not answered,,
+9,Air is,a mixture,a pure substance,an element,"anything, that depends on the place where it is found",1,5,-1,y,Not answered,,
+10,Envelope of air that surrounds the earth is known as,biosphere,atmosphere,environment,ecosystem,2,5,-1,n,Not answered,,
