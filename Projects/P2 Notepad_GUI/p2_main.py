@@ -409,6 +409,8 @@ class Notepad(tk.Tk):
             label='Save', accelerator='Ctrl+S', command=self.save_file)
         self.menu_file.add_command(
             label='Save As...', accelerator='Ctrl+Shift+S', command=self.save_file_as)
+        self.menu_file.add_separator()
+        self.menu_file.add_command(label='Exit', command=self.quit_application)
 
         # edit menu
         self.menu_edit.add_command(
@@ -532,6 +534,11 @@ class Notepad(tk.Tk):
     def update_title(self):
         """Update the title with the file name"""
         self.title(self.file.name + " - Notepad")
+    
+    def quit_application(self):
+        """Quit application after checking for user changes"""
+        self.confirm_changes()
+        self.destroy()
 
     # ---EDIT MENU CALLBACKS------------------------------------------------------------------------
 
